@@ -5,6 +5,7 @@ import processing.core.PApplet;
 
 public class Main extends PApplet {
 	
+	private UDPConnection udp;
 	private Controller c;
 
 	public static void main(String[] args) {
@@ -18,10 +19,15 @@ public class Main extends PApplet {
 	
 	public void setup() {
 		c = new Controller(this);
+		udp = new UDPConnection();
+		udp.start();
 	}
 	
 	public void draw() {
 		
 	}
-
+	
+	public void mousePressed() {
+		udp.sendsMessage("Hola desde eclipse");
+	}
 }

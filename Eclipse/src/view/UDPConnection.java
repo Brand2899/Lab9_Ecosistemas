@@ -41,18 +41,20 @@ public class UDPConnection extends Thread{
 	}
 	
 	public void sendsMessage(String message) {
-		
-		// necesita 4 parametros en constructor
-		try {
-			InetAddress	ip = InetAddress.getByName("127.0.0.1");
-			DatagramPacket packet = new DatagramPacket(message.getBytes(), message.getBytes().length, ip, 6000);
-			socket.send(packet);
-		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		new Thread(
+				()-> {
+					// necesita 4 parametros en constructor
+					try {
+						InetAddress	ip = InetAddress.getByName("127.0.0.1");
+						DatagramPacket packet = new DatagramPacket(message.getBytes(), message.getBytes().length, ip, 6000);
+						socket.send(packet);
+					} catch (UnknownHostException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}).start();	
 	}
 }
