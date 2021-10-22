@@ -16,9 +16,8 @@ public class UDPConnection extends Thread{
 	
 	public void run() {
 		try {
-			
 			//1. Fase de escuchar
-			socket = new DatagramSocket(5000);
+			socket = new DatagramSocket(5045);
 			
 			//2. Fase de esperar mensajes: Datagrams
 			while(true) {
@@ -30,12 +29,12 @@ public class UDPConnection extends Thread{
 				System.out.println("Esperando Datagrama");
 				socket.receive(packet);
 				
-				String message = new String(packet.getData()).trim();
-				System.out.println("Datagrama recibido " + message);
-				
 				String[] messageAddress = packet.getSocketAddress().toString().split(":");
 				senderIP = messageAddress[0].replace("/", "");
 				senderPort = Integer.parseInt(messageAddress[1]);
+				
+				String message = new String(packet.getData()).trim();
+				System.out.println("Datagrama recibido " + message + " ip: " + senderIP + " puerto: " + senderPort);
 			}
 		} catch (SocketException e) {
 			// TODO Auto-generated catch block
@@ -46,13 +45,13 @@ public class UDPConnection extends Thread{
 		}
 	}
 	
-	public void sendsMessage(String message) {
+	public void sendMessage(String message) {
 		new Thread(
 				()-> {
 					// necesita 4 parametros en constructor
 					try {
-						InetAddress	ip = InetAddress.getByName(senderIP);
-						DatagramPacket packet = new DatagramPacket(message.getBytes(), message.getBytes().length, ip, 5000);
+						InetAddress	ip = InetAddress.getByName("192.168.1.68");
+						DatagramPacket packet = new DatagramPacket(message.getBytes(), message.getBytes().length, ip, 5052);
 						socket.send(packet);
 					} catch (UnknownHostException e) {
 						// TODO Auto-generated catch block

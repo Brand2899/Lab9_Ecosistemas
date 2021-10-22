@@ -22,7 +22,6 @@ public class Main extends PApplet {
 		c = new Controller(this);
 		udp = new UDPConnection();
 		udp.start();
-		createNewOrder("img/jugo_naranja.jpg");
 	}
 	
 	public void draw() {
@@ -34,6 +33,6 @@ public class Main extends PApplet {
 	}
 	
 	public void mousePressed() {
-		udp.sendsMessage("Hola desde eclipse");
+		udp.sendMessage("Hola desde eclipse");
 	}
 }
