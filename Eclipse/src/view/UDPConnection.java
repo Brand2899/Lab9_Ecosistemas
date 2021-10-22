@@ -29,7 +29,7 @@ public class UDPConnection extends Thread{
 				
 				
 				String message = new String(packet.getData()).trim();
-				System.out.println("Datagrama recibido" + message);
+				System.out.println("Datagrama recibido " + message);
 			}
 		} catch (SocketException e) {
 			// TODO Auto-generated catch block
