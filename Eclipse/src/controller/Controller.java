@@ -10,6 +10,14 @@ public class Controller {
 	
 	public Controller(PApplet app) {
 		this.app = app;
+		l = new Logic(app);
 	}
-
+	
+	public void draw() {
+		l.draw();
+	}
+	
+	public void createNewOrder(String imgLink) {
+		l.createNewOrder(imgLink);
+	}
 }
