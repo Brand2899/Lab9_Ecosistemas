@@ -18,6 +18,7 @@ public class Main extends PApplet {
 	}
 	
 	public void setup() {
+		background(255);
 		c = new Controller(this);
 		udp = new UDPConnection();
 		udp.start();

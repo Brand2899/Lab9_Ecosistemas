@@ -21,6 +21,7 @@ public class Logic {
 	}
 	
 	public void createNewOrder(String imgLink) {
-		orders.add(new Order(app, imgLink, 0, 0, ""));
+		String textOrder = "Pedido #" + orders.size() + 1;
+		//orders.add(new Order(app, imgLink, 100, 100, textOrder));
 	}
 }

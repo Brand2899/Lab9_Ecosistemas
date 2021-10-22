@@ -25,6 +25,10 @@ public class Order {
 	
 	public void draw() {
 		app.image(img, posX, posY);
+		app.fill(0);
+		app.textSize(20);
+		app.text(text, posX + 210, posY + 30);
+		app.text(orderDate + "", posX + 210, posY + 60);
 	}
 
 	public PImage getImg() {
