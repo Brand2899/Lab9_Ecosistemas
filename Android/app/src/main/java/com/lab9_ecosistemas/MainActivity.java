@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements OnMessage{
 
     private ImageView imgNaranja, imgPerro, imgSandwich, imgYogurt;
     private Button bnNaranja, bnPerro, bnSandwich, bnYogurt;
@@ -41,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
         bnNaranja.setOnClickListener(
                 (v) -> {
                     Toast.makeText(this, "Jugo de naranja", Toast.LENGTH_SHORT).show();
-                    sendMessage("img/jugo_naranja.jpg");
                 }
         );
 
@@ -64,7 +63,8 @@ public class MainActivity extends AppCompatActivity {
         );
     }
 
-    public void sendMessage(String message){
-        udp.sendMessage(message);
+    @Override
+    public void onMessage(String message) {
+
     }
 }

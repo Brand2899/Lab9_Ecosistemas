@@ -10,9 +10,14 @@ import java.net.UnknownHostException;
 public class UDPConnection extends Thread{
 
     private DatagramSocket socket;
+    private OnMessage observer;
+    private MainActivity mainActivity;
+
+    public void setObserver(OnMessage observer){
+        this.observer = observer;
+    }
 
     public void run(){
-
         try {
             // 1. Escuchar
             socket = new DatagramSocket(5052);
@@ -25,6 +30,8 @@ public class UDPConnection extends Thread{
                 socket.receive(packet);
 
                 String message = new String(packet.getData()).trim();
+
+                observer.onMessage(message);
             }
         } catch (SocketException e) {
             e.printStackTrace();
